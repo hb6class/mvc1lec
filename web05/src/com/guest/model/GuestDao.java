@@ -17,6 +17,21 @@ public class GuestDao {
 	public GuestDao() {
 	}
 	
+	public int deleteOne(int sabun){
+		String sql ="delete from guest where sabun="+sabun;
+		conn=OraDB.getConnection();
+		try{
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql);
+		}catch(Exception ex){}finally{
+			try{
+				if(stmt!=null)stmt.close();
+				if(conn!=null)conn.close();
+			}catch(Exception e){}
+		}
+		return result;
+	}
+	
 	public int updateOne(GuestBean bean){
 		String sql ="update guest set name='";
 		sql+=bean.getName()+"', pay="+bean.getPay();
