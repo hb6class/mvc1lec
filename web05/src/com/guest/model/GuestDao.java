@@ -14,6 +14,25 @@ public class GuestDao {
 	private ResultSet rs;
 	private int result;
 	
+	public GuestDao() {
+	}
+	
+	public int updateOne(GuestBean bean){
+		String sql ="update guest set name='";
+		sql+=bean.getName()+"', pay="+bean.getPay();
+		sql+=" where sabun="+bean.getSabun();
+		conn = OraDB.getConnection();
+		try{
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql);
+		}catch(Exception ex){}finally{
+			try{
+				if(conn!=null)conn.close();
+			}catch(Exception e){}
+		}
+		return result;
+	}
+	
 	public GuestBean selectOne(int sabun){
 		String sql ="select * from guest where sabun="+sabun;
 		GuestBean bean = new GuestBean();

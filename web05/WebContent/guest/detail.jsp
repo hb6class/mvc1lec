@@ -43,6 +43,10 @@
 			<td><%=bean.getPay() %></td>
 		</tr>
 	</table>
+	<ul>
+		<li><a href="update.jsp?idx=<%=bean.getSabun() %>">[수 정]</a></li>
+		<li><a href="delete.jsp?idx=<%=bean.getSabun() %>">[삭 제]</a></li>
+	</ul>
 </body>
 </html>
 
